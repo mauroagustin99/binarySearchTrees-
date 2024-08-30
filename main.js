@@ -15,6 +15,53 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 
 // TOP Tests:
 
+function driverScript() {
+  let array = [];
+  for (let i = 0; i < 10; i++) {
+    array.push(Math.floor(Math.random() * 100));
+  }
+
+  const tree = new Tree(array);
+  console.log('Is this tree balanced? ' + tree.isBalanced());
+  prettyPrint(tree.root);
+
+  function printNode(node) {
+    console.log(node.data);
+  }
+
+  console.log('In-order traversal:');
+  tree.inOrder(printNode);
+
+  console.log('Pre-order traversal:');
+  tree.preOrder(printNode);
+
+  console.log('Post-order traversal:');
+  tree.postOrder(printNode);
+
+  //Trying to unbalance
+  for (let i = 0; i < 7; i++) {
+    tree.insert(Math.floor(Math.random() * 100));
+  }
+  prettyPrint(tree.root);
+  console.log('Is this tree balanced? ' + tree.isBalanced());
+
+  tree.rebalance();
+  console.log('Is this tree balanced? ' + tree.isBalanced());
+  prettyPrint(tree.root);
+
+  console.log('In-order traversal:');
+  tree.inOrder(printNode);
+
+  console.log('Pre-order traversal:');
+  tree.preOrder(printNode);
+
+  console.log('Post-order traversal:');
+  tree.postOrder(printNode);
+}
+
+// driver (test) function
+driverScript();
+
 /*
 
 MY TESTS
